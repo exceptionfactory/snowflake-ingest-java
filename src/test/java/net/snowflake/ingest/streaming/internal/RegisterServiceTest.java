@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import net.snowflake.client.jdbc.internal.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
 import net.snowflake.ingest.connection.RequestBuilder;
 import net.snowflake.ingest.utils.Pair;
 import org.junit.After;

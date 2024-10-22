@@ -21,14 +21,13 @@ import net.snowflake.client.jdbc.SnowflakeUtil;
 import net.snowflake.client.jdbc.cloud.storage.SnowflakeStorageClient;
 import net.snowflake.client.jdbc.cloud.storage.StageInfo;
 import net.snowflake.client.jdbc.cloud.storage.StorageClientFactory;
-import net.snowflake.client.jdbc.internal.apache.http.client.HttpResponseException;
-import net.snowflake.client.jdbc.internal.apache.http.client.methods.CloseableHttpResponse;
-import net.snowflake.client.jdbc.internal.apache.http.client.methods.HttpPut;
-import net.snowflake.client.jdbc.internal.apache.http.client.utils.URIBuilder;
-import net.snowflake.client.jdbc.internal.apache.http.entity.ByteArrayEntity;
-import net.snowflake.client.jdbc.internal.apache.http.impl.client.CloseableHttpClient;
-import net.snowflake.client.jdbc.internal.apache.http.util.EntityUtils;
-import net.snowflake.client.jdbc.internal.google.api.client.http.HttpStatusCodes;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
 import net.snowflake.ingest.connection.IngestResponseException;
 import net.snowflake.ingest.utils.ErrorCode;
 import net.snowflake.ingest.utils.HttpUtil;
@@ -107,9 +106,7 @@ class PresignedUrlExternalVolume implements IStorage {
     try {
       this.fileTransferMetadata =
           InternalStage.createFileTransferMetadataWithAge(this.locationInfo);
-    } catch (JsonProcessingException
-        | SnowflakeSQLException
-        | net.snowflake.client.jdbc.internal.fasterxml.jackson.core.JsonProcessingException e) {
+    } catch (JsonProcessingException | SnowflakeSQLException e) {
       throw new SFException(e, ErrorCode.INTERNAL_ERROR);
     }
 
@@ -209,7 +206,7 @@ class PresignedUrlExternalVolume implements IStorage {
             new ExecTimeTelemetryData());
 
     int statusCode = response.getStatusLine().getStatusCode();
-    if (!HttpStatusCodes.isSuccess(statusCode)) {
+    if (statusCode > 299) {
       Exception ex =
           new HttpResponseException(
               response.getStatusLine().getStatusCode(),

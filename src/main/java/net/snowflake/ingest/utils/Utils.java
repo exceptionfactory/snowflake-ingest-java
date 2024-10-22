@@ -7,7 +7,6 @@ package net.snowflake.ingest.utils;
 import static net.snowflake.ingest.utils.Constants.USER;
 
 import com.codahale.metrics.Timer;
-import io.netty.util.internal.PlatformDependent;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.management.BufferPoolMXBean;
@@ -353,9 +352,8 @@ public class Utils {
 
     Runtime runtime = Runtime.getRuntime();
     logger.logInfo(
-        "Max direct memory={}, max runtime memory={}, total runtime memory={}, free runtime"
+        "Max max runtime memory={}, total runtime memory={}, free runtime"
             + " memory={}",
-        PlatformDependent.maxDirectMemory(),
         runtime.maxMemory(),
         runtime.totalMemory(),
         runtime.freeMemory());

@@ -15,14 +15,14 @@ import java.security.KeyPair;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import net.snowflake.client.jdbc.internal.apache.http.HttpHeaders;
-import net.snowflake.client.jdbc.internal.apache.http.client.methods.HttpGet;
-import net.snowflake.client.jdbc.internal.apache.http.client.methods.HttpPost;
-import net.snowflake.client.jdbc.internal.apache.http.client.methods.HttpUriRequest;
-import net.snowflake.client.jdbc.internal.apache.http.client.utils.URIBuilder;
-import net.snowflake.client.jdbc.internal.apache.http.entity.ContentType;
-import net.snowflake.client.jdbc.internal.apache.http.entity.StringEntity;
-import net.snowflake.client.jdbc.internal.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import net.snowflake.ingest.utils.ErrorCode;
 import net.snowflake.ingest.utils.SFException;
 import net.snowflake.ingest.utils.SnowflakeURL;
@@ -110,7 +110,7 @@ public class RequestBuilder {
   // Don't change!
   public static final String CLIENT_NAME = "SnowpipeJavaSDK";
 
-  public static final String DEFAULT_VERSION = "3.0.0";
+  public static final String DEFAULT_VERSION = "3.0.0-20241114";
 
   public static final String JAVA_USER_AGENT = "JAVA";
 
